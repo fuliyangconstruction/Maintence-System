@@ -12,7 +12,7 @@
         body { font-family: 'Noto Sans TC', sans-serif; }
         .serif { font-family: 'Noto Serif TC', serif; }
         
-        /* 質感動畫 */
+        /* 互動特效 */
         .service-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .service-card:active { transform: scale(0.96); }
         .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
@@ -62,41 +62,41 @@
             </h3>
             
             <div class="space-y-3">
-                <button onclick="openRepairModal()" 
+                <button onclick="openModal('repairModal')" 
                    class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#A95C48]">
                     <div class="flex items-center gap-4">
                         <div class="bg-[#FFF5F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">🛠️</div>
                         <div class="text-left">
                             <h4 class="font-bold text-base">房屋報修申請</h4>
-                            <p class="text-xs text-gray-400">填寫工單、上傳照片、快速派工</p>
+                            <p class="text-xs text-gray-400">填寫工單、上傳照片</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#A95C48] transition">➜</span>
                 </button>
 
-                <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card block bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#2C3E50]">
+                <button onclick="openModal('queryModal')" 
+                   class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#2C3E50]">
                     <div class="flex items-center gap-4">
                         <div class="bg-[#F0F4F8] w-10 h-10 rounded-full flex items-center justify-center text-xl">📂</div>
-                        <div>
+                        <div class="text-left">
                             <h4 class="font-bold text-base">買賣案件查詢</h4>
-                            <p class="text-xs text-gray-400">洽詢專員目前案件進度</p>
+                            <p class="text-xs text-gray-400">查詢簽約與案件進度</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#2C3E50] transition">➜</span>
-                </a>
+                </button>
 
-                <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card block bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#C6A87C]">
+                <button onclick="openModal('consultModal')" 
+                   class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#C6A87C]">
                     <div class="flex items-center gap-4">
                         <div class="bg-[#FCF9F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">💬</div>
-                        <div>
+                        <div class="text-left">
                             <h4 class="font-bold text-base">線上客服諮詢</h4>
-                            <p class="text-xs text-gray-400">合約疑問、其他服務需求</p>
+                            <p class="text-xs text-gray-400">合約、款項與稅務問題</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#C6A87C] transition">➜</span>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -131,150 +131,188 @@
     </footer>
 
     <div id="repairModal" class="fixed inset-0 z-[60] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeRepairModal()"></div>
-        
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('repairModal')"></div>
         <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
-            
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl serif font-bold text-[#2C3E50]">📝 填寫報修工單</h3>
-                <button onclick="closeRepairModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <h3 class="text-xl serif font-bold text-[#2C3E50]">🛠️ 填寫報修工單</h3>
+                <button onclick="closeModal('repairModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
             </div>
-
-            <form id="repairForm" onsubmit="event.preventDefault(); submitRepairToLine();">
-                
+            <form onsubmit="event.preventDefault(); submitRepair();">
                 <div class="mb-4">
                     <label class="block text-xs font-bold text-gray-500 mb-1">📍 報修地址 / 建案戶號 <span class="text-red-500">*</span></label>
-                    <input type="text" id="address" required placeholder="請填寫完整門牌號碼以利查詢" 
-                           class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none">
+                    <input type="text" id="repairAddress" required placeholder="請填寫完整門牌號碼" class="w-full input-style">
                 </div>
-
                 <div class="mb-4">
                     <label class="block text-xs font-bold text-gray-500 mb-1">🏢 樓層 <span class="text-red-500">*</span></label>
-                    <select id="floor" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none appearance-none">
-                        <option value="" disabled selected>請選擇樓層</option>
-                        </select>
+                    <select id="repairFloor" required class="w-full input-style bg-white"></select>
                 </div>
-
                 <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-500 mb-2">⚠️ 報修項目 (可單選)</label>
+                    <label class="block text-xs font-bold text-gray-500 mb-2">⚠️ 報修項目</label>
                     <div class="grid grid-cols-2 gap-2">
                         <label class="cursor-pointer">
-                            <input type="radio" name="category" value="房屋滲水" class="peer hidden" checked>
-                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
-                                💧 房屋滲水
-                            </div>
+                            <input type="radio" name="repairCat" value="房屋滲水" class="peer hidden" checked>
+                            <div class="radio-box">💧 房屋滲水</div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="category" value="水電報修" class="peer hidden">
-                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
-                                ⚡ 水電設備
-                            </div>
+                            <input type="radio" name="repairCat" value="水電報修" class="peer hidden">
+                            <div class="radio-box">⚡ 水電設備</div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="category" value="磁磚問題" class="peer hidden">
-                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
-                                🧱 磁磚問題
-                            </div>
+                            <input type="radio" name="repairCat" value="磁磚問題" class="peer hidden">
+                            <div class="radio-box">🧱 磁磚問題</div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="category" value="瓦斯問題" class="peer hidden">
-                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
-                                🔥 瓦斯管線
-                            </div>
+                            <input type="radio" name="repairCat" value="瓦斯問題" class="peer hidden">
+                            <div class="radio-box">🔥 瓦斯管線</div>
                         </label>
                     </div>
                 </div>
-
                 <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center">
                     <p class="text-xs text-gray-500 mb-2">📸 現場照片上傳</p>
-                    <button type="button" onclick="fakeUpload()" id="photoBtn" class="text-sm text-[#C6A87C] font-medium border border-[#C6A87C] px-4 py-1 rounded-full hover:bg-[#C6A87C] hover:text-white transition">
-                        + 點擊準備照片
-                    </button>
-                    <p id="photoMsg" class="text-[10px] text-gray-400 mt-2">請準備好照片，稍後於 LINE 傳送</p>
+                    <button type="button" onclick="fakeUpload(this)" class="text-sm text-[#C6A87C] font-medium border border-[#C6A87C] px-4 py-1 rounded-full hover:bg-[#C6A87C] hover:text-white transition">+ 點擊準備照片</button>
+                    <p class="text-[10px] text-gray-400 mt-2">請準備好照片，稍後於 LINE 傳送</p>
                 </div>
-
-                <button type="submit" class="w-full bg-[#A95C48] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#8e4d3c] transition tracking-widest">
-                    生成報修單並傳送
-                </button>
+                <button type="submit" class="w-full btn-submit">生成報修單並傳送</button>
             </form>
         </div>
     </div>
 
+    <div id="queryModal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('queryModal')"></div>
+        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl serif font-bold text-[#2C3E50]">📂 買賣案件查詢</h3>
+                <button onclick="closeModal('queryModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <form onsubmit="event.preventDefault(); submitQuery();">
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">🏗️ 購買建案名稱 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryProject" required placeholder="例如：富利暘一期" class="w-full input-style">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">👤 客戶姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryName" required placeholder="請輸入簽約人姓名" class="w-full input-style">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">📍 購買戶別 / 地址 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryUnit" required placeholder="例如：A棟8樓 或 門牌號碼" class="w-full input-style">
+                </div>
+                <button type="submit" class="w-full btn-submit bg-[#2C3E50] hover:bg-[#1a252f]">查詢案件進度</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="consultModal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('consultModal')"></div>
+        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl serif font-bold text-[#2C3E50]">💬 線上客服諮詢</h3>
+                <button onclick="closeModal('consultModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <form onsubmit="event.preventDefault(); submitConsult();">
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">👤 您的姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" id="consultName" required placeholder="請輸入姓名" class="w-full input-style">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-gray-500 mb-2">❓ 您想諮詢的問題</label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="consultCat" value="合約與條款確認" class="peer hidden" checked>
+                            <div class="radio-box">📑 合約與條款確認</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="consultCat" value="工程款繳納進度" class="peer hidden">
+                            <div class="radio-box">💰 工程款繳納進度</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="consultCat" value="交屋時間與驗屋" class="peer hidden">
+                            <div class="radio-box">🏗️ 交屋時間與驗屋</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="consultCat" value="貸款與稅務諮詢" class="peer hidden">
+                            <div class="radio-box">🏦 貸款與稅務諮詢</div>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full btn-submit bg-[#C6A87C] hover:bg-[#b09265]">開始諮詢</button>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .input-style { @apply bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none transition; }
+        .radio-box { @apply border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition; }
+        .btn-submit { @apply bg-[#A95C48] text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition tracking-widest; }
+    </style>
+
     <script>
-        // 初始化樓層選單 (1F - 15F)
-        const floorSelect = document.getElementById('floor');
-        for (let i = 1; i <= 15; i++) {
-            const option = document.createElement('option');
-            option.value = i + '樓';
-            option.textContent = i + '樓';
-            floorSelect.appendChild(option);
-        }
+        // 共用：初始化樓層
+        const floorSelect = document.getElementById('repairFloor');
+        for (let i = 1; i <= 15; i++) floorSelect.add(new Option(i + '樓', i + '樓'));
 
-        // 開啟/關閉 Modal
-        function openRepairModal() {
-            document.getElementById('repairModal').classList.remove('hidden');
-        }
-        function closeRepairModal() {
-            document.getElementById('repairModal').classList.add('hidden');
-        }
+        // 共用：開啟/關閉 Modal
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-        // 擬態上傳照片互動
-        function fakeUpload() {
-            const btn = document.getElementById('photoBtn');
-            const msg = document.getElementById('photoMsg');
+        // 報修：擬態上傳
+        function fakeUpload(btn) {
             btn.classList.add('bg-[#C6A87C]', 'text-white');
             btn.innerHTML = "✅ 已準備就緒";
-            msg.innerHTML = "很好！系統將引導您至 LINE 傳送此照片";
-            msg.classList.add('text-[#A95C48]', 'font-bold');
+            Swal.fire({ toast: true, position: 'top', icon: 'success', title: '照片已標記，請於 LINE 傳送', showConfirmButton: false, timer: 2000 });
         }
 
-        // 送出表單邏輯
-        function submitRepairToLine() {
-            const address = document.getElementById('address').value;
-            const floor = document.getElementById('floor').value;
-            const category = document.querySelector('input[name="category"]:checked').value;
-
-            if (!address || !floor) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: '資訊不完整',
-                    text: '請務必填寫「完整地址」與「樓層」，謝謝您的配合！',
-                    confirmButtonColor: '#2C3E50'
-                });
-                return;
-            }
-
-            // 組合 LINE 訊息內容
-            const message = `【富利暘住戶報修申請】\n\n` +
-                            `📍 地址/案名：${address}\n` +
-                            `🏢 樓層：${floor}\n` +
-                            `⚠️ 報修項目：${category}\n\n` +
-                            `📸 照片說明：(請在此訊息後傳送照片)`;
-
-            // 進行 URL 編碼
+        // --- 核心邏輯：傳送至 LINE ---
+        function sendToLine(message) {
             const encodedMsg = encodeURIComponent(message);
-            const lineUrl = `https://line.me/R/ti/p/@491kpfrg?text=${encodedMsg}`; // 這裡用您的 ID，但 text 參數通常需要配合 share 連結或直接對話窗
+            // 使用 LINE OA Message API
+            window.location.href = `https://line.me/R/oaMessage/@491kpfrg/?${encodedMsg}`;
+        }
 
-            // 由於 LINE 官方帳號連結機制，有時無法直接帶入 text (取決於裝置)。
-            // 我們使用 "複製文字 + 跳轉" 或 "直接帶入"。
-            // 修正：針對官方帳號，最穩定的做法是讓客戶看到內容。
+        // 1. 提交報修
+        function submitRepair() {
+            const addr = document.getElementById('repairAddress').value;
+            const floor = document.getElementById('repairFloor').value;
+            const cat = document.querySelector('input[name="repairCat"]:checked').value;
             
-            // 這裡使用 SweetAlert2 做最後引導
-            Swal.fire({
-                title: '報修單已生成！',
-                html: '<p class="text-sm text-gray-500">即將為您開啟 LINE。</p><p class="text-sm font-bold text-[#A95C48] mt-2">請記得在對話框貼上訊息後，<br>再點選相簿傳送照片喔！</p>',
-                icon: 'success',
-                confirmButtonText: '前往 LINE 傳送',
-                confirmButtonColor: '#00B900'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // 嘗試帶入文字 (如果不支援會只開視窗)
-                    // 注意：https://line.me/R/oaMessage/ 僅支援特定帳號，最通用是 msg/text
-                    // 您的 ID 是 @491kpfrg。
-                    // 嘗試使用通用分享連結
-                    window.location.href = `https://line.me/R/oaMessage/@491kpfrg/?${encodedMsg}`;
-                }
-            });
+            const msg = `【🏠 房屋報修申請】\n` +
+                        `📍 地址/案名：${addr}\n` +
+                        `🏢 樓層：${floor}\n` +
+                        `⚠️ 項目：${cat}\n` +
+                        `📸 (請在此傳送照片)`;
+            
+            closeModal('repairModal');
+            sendToLine(msg);
+        }
+
+        // 2. 提交案件查詢
+        function submitQuery() {
+            const project = document.getElementById('queryProject').value;
+            const name = document.getElementById('queryName').value;
+            const unit = document.getElementById('queryUnit').value;
+
+            const msg = `【📂 買賣案件查詢】\n` +
+                        `🏗️ 建案：${project}\n` +
+                        `👤 姓名：${name}\n` +
+                        `📍 戶別/地址：${unit}\n` +
+                        `❓ 請問目前案件進度？`;
+
+            closeModal('queryModal');
+            sendToLine(msg);
+        }
+
+        // 3. 提交客服諮詢
+        function submitConsult() {
+            const name = document.getElementById('consultName').value;
+            const cat = document.querySelector('input[name="consultCat"]:checked').value;
+
+            const msg = `【💬 線上客服諮詢】\n` +
+                        `👤 姓名：${name}\n` +
+                        `❓ 諮詢項目：${cat}\n` +
+                        `💡 請協助回覆，謝謝！`;
+
+            closeModal('consultModal');
+            sendToLine(msg);
         }
     </script>
 </body>
