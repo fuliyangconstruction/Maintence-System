@@ -11,7 +11,7 @@
         body { font-family: 'Noto Sans TC', sans-serif; }
         .serif { font-family: 'Noto Serif TC', serif; }
         
-        /* 玻璃擬態與卡片互動 */
+        /* 卡片互動特效 */
         .service-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .service-card:active { transform: scale(0.96); }
         .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
@@ -30,45 +30,43 @@
 
     <main class="flex-grow flex flex-col items-center p-6 w-full max-w-lg mx-auto">
         
-        <div class="text-center mb-8">
-            <p class="text-gray-400 text-sm font-light">歡迎回家，請選擇您需要的服務</p>
-        </div>
-
-        <div class="w-full mb-6">
-            <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase">住戶專屬服務</h3>
-            <div class="grid grid-cols-1 gap-4">
+        <div class="w-full mb-8">
+            <h3 class="text-xs text-[#C6A87C] mb-3 ml-1 tracking-wider uppercase flex items-center gap-1">
+                <span class="w-1 h-1 rounded-full bg-[#C6A87C]"></span> 線上專人服務
+            </h3>
+            <div class="space-y-3">
                 
                 <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card bg-white rounded-xl p-5 flex items-center justify-between group text-[#2C3E50]">
+                   class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-[#FFF5F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-sm">🛠️</div>
+                        <div class="bg-[#FFF5F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">🛠️</div>
                         <div>
-                            <h4 class="font-bold text-lg">房屋報修</h4>
-                            <p class="text-xs text-gray-400">滲漏水、硬體維修</p>
+                            <h4 class="font-bold text-base">房屋報修服務</h4>
+                            <p class="text-xs text-gray-400">滲漏水、硬體設備維護</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#A95C48] transition">➜</span>
                 </a>
 
                 <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card bg-white rounded-xl p-5 flex items-center justify-between group text-[#2C3E50]">
+                   class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-[#F0F4F8] w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-sm">📅</div>
+                        <div class="bg-[#F0F4F8] w-10 h-10 rounded-full flex items-center justify-center text-xl">📂</div>
                         <div>
-                            <h4 class="font-bold text-lg">預約保養</h4>
-                            <p class="text-xs text-gray-400">定期健檢、設備維護</p>
+                            <h4 class="font-bold text-base">買賣案件查詢</h4>
+                            <p class="text-xs text-gray-400">洽詢專員目前案件進度</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#2C3E50] transition">➜</span>
                 </a>
 
                  <a href="https://line.me/R/ti/p/@491kpfrg" 
-                    class="service-card bg-white rounded-xl p-5 flex items-center justify-between group text-[#2C3E50]">
+                    class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
                      <div class="flex items-center gap-4">
-                         <div class="bg-[#FCF9F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-sm">💬</div>
+                         <div class="bg-[#FCF9F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">💬</div>
                          <div>
-                             <h4 class="font-bold text-lg">客服諮詢</h4>
-                             <p class="text-xs text-gray-400">合約、交屋進度查詢</p>
+                             <h4 class="font-bold text-base">一般客服諮詢</h4>
+                             <p class="text-xs text-gray-400">合約疑問、其他服務</p>
                          </div>
                      </div>
                      <span class="text-gray-300 group-hover:text-[#C6A87C] transition">➜</span>
@@ -77,24 +75,35 @@
         </div>
 
         <div class="w-full">
-            <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase">鑑賞與試算</h3>
-            <div class="grid grid-cols-2 gap-4">
+            <h3 class="text-xs text-[#C6A87C] mb-3 ml-1 tracking-wider uppercase flex items-center gap-1">
+                <span class="w-1 h-1 rounded-full bg-[#C6A87C]"></span> 知識與試算工具
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
                 
+                <a href="https://www.homegoycl.com.tw/tw/news-detail/109" target="_blank"
+                   class="service-card col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 group hover:border-[#C6A87C] transition">
+                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C]">📜</div>
+                    <div class="text-left">
+                        <h4 class="font-bold text-white text-sm">買賣案件流程教學</h4>
+                        <p class="text-[10px] text-gray-400 mt-1">地政士專業解說：簽約、用印、完稅、交屋流程</p>
+                    </div>
+                </a>
+
                 <a href="https://yangceo-taiwan.github.io/loan-forecast/" target="_blank"
-                   class="service-card bg-[#1E293B] border border-gray-700 rounded-xl p-5 flex flex-col items-center text-center justify-center gap-3 group hover:border-[#C6A87C] transition">
-                    <div class="bg-[#0B1E33] w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-inner border border-gray-700 text-[#C6A87C]">💎</div>
+                   class="service-card bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex flex-col items-center text-center justify-center gap-2 group hover:border-[#C6A87C] transition">
+                    <div class="text-2xl mb-1">💎</div>
                     <div>
-                        <h4 class="font-bold text-white text-sm">購屋能力試算</h4>
-                        <p class="text-[10px] text-gray-400 mt-1">貸款 KYC 調查</p>
+                        <h4 class="font-bold text-white text-sm">貸款 KYC 試算</h4>
+                        <p class="text-[10px] text-gray-400">購屋能力評估</p>
                     </div>
                 </a>
 
                 <a href="https://fuliyang-construction.com/" target="_blank"
-                   class="service-card bg-[#1E293B] border border-gray-700 rounded-xl p-5 flex flex-col items-center text-center justify-center gap-3 group hover:border-[#C6A87C] transition">
-                    <div class="bg-[#0B1E33] w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-inner border border-gray-700">🏢</div>
+                   class="service-card bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex flex-col items-center text-center justify-center gap-2 group hover:border-[#C6A87C] transition">
+                    <div class="text-2xl mb-1">🏢</div>
                     <div>
                         <h4 class="font-bold text-white text-sm">官方網站</h4>
-                        <p class="text-[10px] text-gray-400 mt-1">品牌與建案資訊</p>
+                        <p class="text-[10px] text-gray-400">品牌與建案資訊</p>
                     </div>
                 </a>
 
@@ -103,7 +112,7 @@
 
     </main>
 
-    <footer class="text-center py-8 text-xs text-gray-500">
+    <footer class="text-center py-8 text-xs text-gray-500/50">
         <p>&copy; 2024 富利暘建設有限公司</p>
     </footer>
 
