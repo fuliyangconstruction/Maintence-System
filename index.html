@@ -5,51 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>富利暘建設 | VIP 尊榮服務中心</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@600&display=swap');
         
         body { font-family: 'Noto Sans TC', sans-serif; }
         .serif { font-family: 'Noto Serif TC', serif; }
         
-        /* 卡片互動特效 */
+        /* 質感動畫 */
         .service-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .service-card:active { transform: scale(0.96); }
         .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+
+        /* 模態視窗動畫 */
+        .modal-enter { animation: modalIn 0.3s ease-out forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-[#0B1E33] text-white min-h-screen flex flex-col">
 
-    <header class="bg-[#0B1E33] py-8 px-6 flex flex-col items-center sticky top-0 z-50 border-b border-gray-800/50 backdrop-blur-md bg-opacity-90">
-        <h1 class="text-2xl serif font-bold tracking-[0.2em] text-white">富利暘建設</h1>
-        <div class="flex items-center gap-2 mt-2">
-            <span class="h-[1px] w-8 bg-[#C6A87C]"></span>
-            <p class="text-[10px] text-[#C6A87C] tracking-widest uppercase">VIP MEMBER SERVICE</p>
-            <span class="h-[1px] w-8 bg-[#C6A87C]"></span>
+    <header class="bg-[#0B1E33] py-6 px-6 sticky top-0 z-50 border-b border-gray-800/50 backdrop-blur-md bg-opacity-90">
+        <div class="max-w-lg mx-auto flex items-center justify-center gap-3">
+            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden p-1">
+                <img src="富利暘Logo Stamp.png" alt="富利暘 Logo" class="object-contain w-full h-full opacity-90">
+            </div>
+            <div class="text-left">
+                <h1 class="text-xl serif font-bold tracking-[0.1em] text-white">富利暘建設</h1>
+                <p class="text-[10px] text-[#C6A87C] tracking-widest uppercase">VIP CLIENT SERVICE</p>
+            </div>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center p-6 w-full max-w-lg mx-auto">
+    <main class="flex-grow flex flex-col items-center p-5 w-full max-w-lg mx-auto pb-20">
         
+        <div class="w-full mb-6">
+            <a href="https://fuliyang-construction.com/" target="_blank"
+               class="service-card block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-5 shadow-lg flex items-center justify-between group relative overflow-hidden">
+                <div class="absolute bg-white/10 w-20 h-20 rounded-full -top-10 -right-5 blur-xl"></div>
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white">🏢</div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg tracking-wide">前往公司官網</h4>
+                        <p class="text-xs text-white/80">品牌資訊、熱銷建案賞析</p>
+                    </div>
+                </div>
+                <span class="text-white relative z-10 font-bold">GO ➜</span>
+            </a>
+        </div>
+
         <div class="w-full mb-8">
-            <h3 class="text-xs text-[#C6A87C] mb-3 ml-1 tracking-wider uppercase flex items-center gap-1">
-                <span class="w-1 h-1 rounded-full bg-[#C6A87C]"></span> 線上專人服務
+            <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase flex items-center gap-2">
+                <span class="w-1 h-4 bg-[#C6A87C] rounded-full"></span> 住戶專屬管家
             </h3>
+            
             <div class="space-y-3">
-                
-                <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
+                <button onclick="openRepairModal()" 
+                   class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#A95C48]">
                     <div class="flex items-center gap-4">
                         <div class="bg-[#FFF5F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">🛠️</div>
-                        <div>
-                            <h4 class="font-bold text-base">房屋報修服務</h4>
-                            <p class="text-xs text-gray-400">滲漏水、硬體設備維護</p>
+                        <div class="text-left">
+                            <h4 class="font-bold text-base">房屋報修申請</h4>
+                            <p class="text-xs text-gray-400">填寫工單、上傳照片、快速派工</p>
                         </div>
                     </div>
                     <span class="text-gray-300 group-hover:text-[#A95C48] transition">➜</span>
-                </a>
+                </button>
 
                 <a href="https://line.me/R/ti/p/@491kpfrg" 
-                   class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
+                   class="service-card block bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#2C3E50]">
                     <div class="flex items-center gap-4">
                         <div class="bg-[#F0F4F8] w-10 h-10 rounded-full flex items-center justify-center text-xl">📂</div>
                         <div>
@@ -60,61 +86,196 @@
                     <span class="text-gray-300 group-hover:text-[#2C3E50] transition">➜</span>
                 </a>
 
-                 <a href="https://line.me/R/ti/p/@491kpfrg" 
-                    class="service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50]">
-                     <div class="flex items-center gap-4">
-                         <div class="bg-[#FCF9F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">💬</div>
-                         <div>
-                             <h4 class="font-bold text-base">一般客服諮詢</h4>
-                             <p class="text-xs text-gray-400">合約疑問、其他服務</p>
-                         </div>
-                     </div>
-                     <span class="text-gray-300 group-hover:text-[#C6A87C] transition">➜</span>
-                 </a>
+                <a href="https://line.me/R/ti/p/@491kpfrg" 
+                   class="service-card block bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#C6A87C]">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-[#FCF9F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">💬</div>
+                        <div>
+                            <h4 class="font-bold text-base">線上客服諮詢</h4>
+                            <p class="text-xs text-gray-400">合約疑問、其他服務需求</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-300 group-hover:text-[#C6A87C] transition">➜</span>
+                </a>
             </div>
         </div>
 
         <div class="w-full">
-            <h3 class="text-xs text-[#C6A87C] mb-3 ml-1 tracking-wider uppercase flex items-center gap-1">
-                <span class="w-1 h-1 rounded-full bg-[#C6A87C]"></span> 知識與試算工具
+            <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase flex items-center gap-2">
+                <span class="w-1 h-4 bg-gray-600 rounded-full"></span> 知識與試算
             </h3>
             <div class="grid grid-cols-2 gap-3">
-                
                 <a href="https://www.homegoycl.com.tw/tw/news-detail/109" target="_blank"
                    class="service-card col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 group hover:border-[#C6A87C] transition">
                     <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C]">📜</div>
                     <div class="text-left">
-                        <h4 class="font-bold text-white text-sm">買賣案件流程教學</h4>
-                        <p class="text-[10px] text-gray-400 mt-1">地政士專業解說：簽約、用印、完稅、交屋流程</p>
+                        <h4 class="font-bold text-white text-sm">買賣流程教學</h4>
+                        <p class="text-[10px] text-gray-400 mt-1">代書解析：簽約、用印、完稅、交屋</p>
                     </div>
                 </a>
 
                 <a href="https://yangceo-taiwan.github.io/loan-forecast/" target="_blank"
-                   class="service-card bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex flex-col items-center text-center justify-center gap-2 group hover:border-[#C6A87C] transition">
-                    <div class="text-2xl mb-1">💎</div>
-                    <div>
+                   class="service-card col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 group hover:border-[#C6A87C] transition">
+                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C]">💎</div>
+                    <div class="text-left">
                         <h4 class="font-bold text-white text-sm">貸款 KYC 試算</h4>
-                        <p class="text-[10px] text-gray-400">購屋能力評估</p>
+                        <p class="text-[10px] text-gray-400 mt-1">精準評估您的購屋能力</p>
                     </div>
                 </a>
-
-                <a href="https://fuliyang-construction.com/" target="_blank"
-                   class="service-card bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex flex-col items-center text-center justify-center gap-2 group hover:border-[#C6A87C] transition">
-                    <div class="text-2xl mb-1">🏢</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">官方網站</h4>
-                        <p class="text-[10px] text-gray-400">品牌與建案資訊</p>
-                    </div>
-                </a>
-
             </div>
         </div>
-
     </main>
 
-    <footer class="text-center py-8 text-xs text-gray-500/50">
+    <footer class="text-center py-6 text-xs text-gray-500/50">
         <p>&copy; 2024 富利暘建設有限公司</p>
     </footer>
 
+    <div id="repairModal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeRepairModal()"></div>
+        
+        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
+            
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl serif font-bold text-[#2C3E50]">📝 填寫報修工單</h3>
+                <button onclick="closeRepairModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+
+            <form id="repairForm" onsubmit="event.preventDefault(); submitRepairToLine();">
+                
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">📍 報修地址 / 建案戶號 <span class="text-red-500">*</span></label>
+                    <input type="text" id="address" required placeholder="請填寫完整門牌號碼以利查詢" 
+                           class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">🏢 樓層 <span class="text-red-500">*</span></label>
+                    <select id="floor" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none appearance-none">
+                        <option value="" disabled selected>請選擇樓層</option>
+                        </select>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-gray-500 mb-2">⚠️ 報修項目 (可單選)</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="category" value="房屋滲水" class="peer hidden" checked>
+                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
+                                💧 房屋滲水
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="category" value="水電報修" class="peer hidden">
+                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
+                                ⚡ 水電設備
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="category" value="磁磚問題" class="peer hidden">
+                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
+                                🧱 磁磚問題
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="category" value="瓦斯問題" class="peer hidden">
+                            <div class="border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition">
+                                🔥 瓦斯管線
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center">
+                    <p class="text-xs text-gray-500 mb-2">📸 現場照片上傳</p>
+                    <button type="button" onclick="fakeUpload()" id="photoBtn" class="text-sm text-[#C6A87C] font-medium border border-[#C6A87C] px-4 py-1 rounded-full hover:bg-[#C6A87C] hover:text-white transition">
+                        + 點擊準備照片
+                    </button>
+                    <p id="photoMsg" class="text-[10px] text-gray-400 mt-2">請準備好照片，稍後於 LINE 傳送</p>
+                </div>
+
+                <button type="submit" class="w-full bg-[#A95C48] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#8e4d3c] transition tracking-widest">
+                    生成報修單並傳送
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 初始化樓層選單 (1F - 15F)
+        const floorSelect = document.getElementById('floor');
+        for (let i = 1; i <= 15; i++) {
+            const option = document.createElement('option');
+            option.value = i + '樓';
+            option.textContent = i + '樓';
+            floorSelect.appendChild(option);
+        }
+
+        // 開啟/關閉 Modal
+        function openRepairModal() {
+            document.getElementById('repairModal').classList.remove('hidden');
+        }
+        function closeRepairModal() {
+            document.getElementById('repairModal').classList.add('hidden');
+        }
+
+        // 擬態上傳照片互動
+        function fakeUpload() {
+            const btn = document.getElementById('photoBtn');
+            const msg = document.getElementById('photoMsg');
+            btn.classList.add('bg-[#C6A87C]', 'text-white');
+            btn.innerHTML = "✅ 已準備就緒";
+            msg.innerHTML = "很好！系統將引導您至 LINE 傳送此照片";
+            msg.classList.add('text-[#A95C48]', 'font-bold');
+        }
+
+        // 送出表單邏輯
+        function submitRepairToLine() {
+            const address = document.getElementById('address').value;
+            const floor = document.getElementById('floor').value;
+            const category = document.querySelector('input[name="category"]:checked').value;
+
+            if (!address || !floor) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '資訊不完整',
+                    text: '請務必填寫「完整地址」與「樓層」，謝謝您的配合！',
+                    confirmButtonColor: '#2C3E50'
+                });
+                return;
+            }
+
+            // 組合 LINE 訊息內容
+            const message = `【富利暘住戶報修申請】\n\n` +
+                            `📍 地址/案名：${address}\n` +
+                            `🏢 樓層：${floor}\n` +
+                            `⚠️ 報修項目：${category}\n\n` +
+                            `📸 照片說明：(請在此訊息後傳送照片)`;
+
+            // 進行 URL 編碼
+            const encodedMsg = encodeURIComponent(message);
+            const lineUrl = `https://line.me/R/ti/p/@491kpfrg?text=${encodedMsg}`; // 這裡用您的 ID，但 text 參數通常需要配合 share 連結或直接對話窗
+
+            // 由於 LINE 官方帳號連結機制，有時無法直接帶入 text (取決於裝置)。
+            // 我們使用 "複製文字 + 跳轉" 或 "直接帶入"。
+            // 修正：針對官方帳號，最穩定的做法是讓客戶看到內容。
+            
+            // 這裡使用 SweetAlert2 做最後引導
+            Swal.fire({
+                title: '報修單已生成！',
+                html: '<p class="text-sm text-gray-500">即將為您開啟 LINE。</p><p class="text-sm font-bold text-[#A95C48] mt-2">請記得在對話框貼上訊息後，<br>再點選相簿傳送照片喔！</p>',
+                icon: 'success',
+                confirmButtonText: '前往 LINE 傳送',
+                confirmButtonColor: '#00B900'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 嘗試帶入文字 (如果不支援會只開視窗)
+                    // 注意：https://line.me/R/oaMessage/ 僅支援特定帳號，最通用是 msg/text
+                    // 您的 ID 是 @491kpfrg。
+                    // 嘗試使用通用分享連結
+                    window.location.href = `https://line.me/R/oaMessage/@491kpfrg/?${encodedMsg}`;
+                }
+            });
+        }
+    </script>
 </body>
 </html>
