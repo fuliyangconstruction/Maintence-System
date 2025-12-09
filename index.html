@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富利暘建設 | 售後服務中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 引入質感字體 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@600&display=swap');
+        
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        
+        /* 按鈕微互動：點擊時會有下沉感 */
+        .service-card { transition: all 0.2s ease; }
+        .service-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-[#F5F5F7] text-[#2C3E50] min-h-screen flex flex-col">
+
+    <header class="bg-white py-5 px-6 shadow-sm flex justify-center sticky top-0 z-50">
+        <div class="text-center">
+            <h1 class="text-xl serif font-bold tracking-[0.2em] text-[#2C3E50]">富利暘建設</h1>
+            <p class="text-[10px] text-[#C6A87C] tracking-widest uppercase mt-1">VIP Service Center</p>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto">
+        
+        <div class="text-center mb-8">
+            <h2 class="text-2xl serif font-medium mb-2">您需要什麼服務？</h2>
+            <p class="text-gray-500 text-sm font-light">點擊下方選項，立即連接 LINE 專人服務</p>
+        </div>
+
+        <div class="w-full space-y-4">
+            
+            <a href="https://line.me/R/ti/p/@491kpfrg" 
+               class="service-card block bg-white border-l-4 border-[#A95C48] p-6 rounded-xl shadow-md hover:shadow-lg flex items-center justify-between group decoration-0">
+                <div class="flex items-center gap-4">
+                    <div class="bg-[#FFF5F2] p-3 rounded-full text-2xl">🛠️</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[#2C3E50]">房屋報修</h3>
+                        <p class="text-xs text-gray-400">滲漏水、龜裂、設備故障</p>
+                    </div>
+                </div>
+                <div class="text-[#A95C48] group-hover:translate-x-1 transition">➜</div>
+            </a>
+
+            <a href="https://line.me/R/ti/p/@491kpfrg" 
+               class="service-card block bg-white border-l-4 border-[#2C3E50] p-6 rounded-xl shadow-md hover:shadow-lg flex items-center justify-between group decoration-0">
+                <div class="flex items-center gap-4">
+                    <div class="bg-[#F0F4F8] p-3 rounded-full text-2xl">📅</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[#2C3E50]">預約保養</h3>
+                        <p class="text-xs text-gray-400">年度健檢、設備維護</p>
+                    </div>
+                </div>
+                <div class="text-[#2C3E50] group-hover:translate-x-1 transition">➜</div>
+            </a>
+
+            <a href="https://line.me/R/ti/p/@491kpfrg" 
+               class="service-card block bg-white border-l-4 border-[#C6A87C] p-6 rounded-xl shadow-md hover:shadow-lg flex items-center justify-between group decoration-0">
+                <div class="flex items-center gap-4">
+                    <div class="bg-[#FCF9F2] p-3 rounded-full text-2xl">💬</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[#2C3E50]">一般諮詢</h3>
+                        <p class="text-xs text-gray-400">交屋進度、合約問題</p>
+                    </div>
+                </div>
+                <div class="text-[#C6A87C] group-hover:translate-x-1 transition">➜</div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-6 text-xs text-gray-400">
+        <p>&copy; 2024 富利暘建設有限公司</p>
+        <p class="mt-1">服務時間：週一至週五 09:00 - 18:00</p>
+    </footer>
+
+</body>
+</html>
