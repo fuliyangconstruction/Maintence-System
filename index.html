@@ -2,57 +2,80 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>富利暘建設 | VIP 尊榮服務中心</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@600&display=swap');
         
-        body { font-family: 'Noto Sans TC', sans-serif; }
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            -webkit-tap-highlight-color: transparent; /* 移除點擊時的藍色高光 */
+        }
         .serif { font-family: 'Noto Serif TC', serif; }
         
         /* 互動特效 */
-        .service-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .service-card:active { transform: scale(0.96); }
-        .service-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+        .service-card { transition: all 0.2s ease-out; }
+        .service-card:active { transform: scale(0.97); background-color: #f3f4f6; }
 
         /* 模態視窗動畫 */
-        .modal-enter { animation: modalIn 0.3s ease-out forwards; }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        .modal-enter { animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
+
+        /* 優化手機點擊體驗的 CSS */
+        .input-style { 
+            @apply w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-base focus:ring-2 focus:ring-[#C6A87C] outline-none transition appearance-none;
+        }
+        
+        /* 選項按鈕優化：加大觸控面積 */
+        .radio-box { 
+            @apply border-2 border-gray-100 rounded-xl py-4 px-2 text-center text-sm font-medium 
+                   active:scale-95 transition-all duration-200
+                   peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] peer-checked:shadow-md; 
+        }
+
+        /* 送出按鈕優化：避免誤觸底部 */
+        .btn-submit { 
+            @apply w-full bg-[#A95C48] text-white font-bold py-5 rounded-xl shadow-lg 
+                   active:bg-[#8e4d3c] active:scale-[0.98] transition tracking-widest text-lg mb-6; 
+        }
+
+        /* 解決 iOS 底部被遮擋問題 */
+        .safe-bottom { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
     </style>
 </head>
 <body class="bg-[#0B1E33] text-white min-h-screen flex flex-col">
 
-    <header class="bg-[#0B1E33] py-6 px-6 sticky top-0 z-50 border-b border-gray-800/50 backdrop-blur-md bg-opacity-90">
+    <header class="bg-[#0B1E33] py-5 px-6 sticky top-0 z-40 border-b border-gray-800/50 backdrop-blur-md bg-opacity-95 shadow-sm">
         <div class="max-w-lg mx-auto flex items-center justify-center gap-3">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden p-1">
-                <img src="富利暘Logo Stamp.png" alt="富利暘 Logo" class="object-contain w-full h-full opacity-90">
+            <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden p-1">
+                <img src="富利暘Logo Stamp.png" alt="Logo" class="object-contain w-full h-full opacity-90">
             </div>
             <div class="text-left">
-                <h1 class="text-xl serif font-bold tracking-[0.1em] text-white">富利暘建設</h1>
-                <p class="text-[10px] text-[#C6A87C] tracking-widest uppercase">VIP CLIENT SERVICE</p>
+                <h1 class="text-lg serif font-bold tracking-[0.1em] text-white">富利暘建設</h1>
+                <p class="text-[9px] text-[#C6A87C] tracking-widest uppercase">VIP CLIENT SERVICE</p>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center p-5 w-full max-w-lg mx-auto pb-20">
+    <main class="flex-grow flex flex-col items-center p-4 w-full max-w-lg mx-auto pb-24">
         
-        <div class="w-full mb-6">
+        <div class="w-full mb-5">
             <a href="https://fuliyang-construction.com/" target="_blank"
-               class="service-card block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-5 shadow-lg flex items-center justify-between group relative overflow-hidden">
-                <div class="absolute bg-white/10 w-20 h-20 rounded-full -top-10 -right-5 blur-xl"></div>
+               class="service-card block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-5 shadow-lg flex items-center justify-between group relative overflow-hidden ring-1 ring-white/20">
+                <div class="absolute bg-white/10 w-24 h-24 rounded-full -top-10 -right-8 blur-xl"></div>
                 <div class="flex items-center gap-4 relative z-10">
-                    <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white">🏢</div>
+                    <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white shadow-inner">🏢</div>
                     <div>
                         <h4 class="font-bold text-white text-lg tracking-wide">前往公司官網</h4>
-                        <p class="text-xs text-white/80">品牌資訊、熱銷建案賞析</p>
+                        <p class="text-xs text-white/90">品牌資訊、熱銷建案賞析</p>
                     </div>
                 </div>
-                <span class="text-white relative z-10 font-bold">GO ➜</span>
+                <span class="text-white relative z-10 font-bold bg-white/20 px-3 py-1 rounded-full text-xs">GO ➜</span>
             </a>
         </div>
 
@@ -65,37 +88,37 @@
                 <button onclick="openModal('repairModal')" 
                    class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#A95C48]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-[#FFF5F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">🛠️</div>
+                        <div class="bg-[#FFF5F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">🛠️</div>
                         <div class="text-left">
-                            <h4 class="font-bold text-base">房屋報修申請</h4>
-                            <p class="text-xs text-gray-400">填寫工單、上傳照片</p>
+                            <h4 class="font-bold text-lg">房屋報修申請</h4>
+                            <p class="text-xs text-gray-500 mt-1">填寫工單、上傳照片</p>
                         </div>
                     </div>
-                    <span class="text-gray-300 group-hover:text-[#A95C48] transition">➜</span>
+                    <span class="text-gray-400 text-xl">➜</span>
                 </button>
 
                 <button onclick="openModal('queryModal')" 
                    class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#2C3E50]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-[#F0F4F8] w-10 h-10 rounded-full flex items-center justify-center text-xl">📂</div>
+                        <div class="bg-[#F0F4F8] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">📂</div>
                         <div class="text-left">
-                            <h4 class="font-bold text-base">買賣案件查詢</h4>
-                            <p class="text-xs text-gray-400">查詢簽約與案件進度</p>
+                            <h4 class="font-bold text-lg">買賣案件查詢</h4>
+                            <p class="text-xs text-gray-500 mt-1">查詢簽約與案件進度</p>
                         </div>
                     </div>
-                    <span class="text-gray-300 group-hover:text-[#2C3E50] transition">➜</span>
+                    <span class="text-gray-400 text-xl">➜</span>
                 </button>
 
                 <button onclick="openModal('consultModal')" 
                    class="w-full service-card bg-white rounded-xl p-4 flex items-center justify-between group text-[#2C3E50] border-l-4 border-[#C6A87C]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-[#FCF9F2] w-10 h-10 rounded-full flex items-center justify-center text-xl">💬</div>
+                        <div class="bg-[#FCF9F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">💬</div>
                         <div class="text-left">
-                            <h4 class="font-bold text-base">線上客服諮詢</h4>
-                            <p class="text-xs text-gray-400">合約、款項與稅務問題</p>
+                            <h4 class="font-bold text-lg">線上客服諮詢</h4>
+                            <p class="text-xs text-gray-500 mt-1">合約、款項與稅務問題</p>
                         </div>
                     </div>
-                    <span class="text-gray-300 group-hover:text-[#C6A87C] transition">➜</span>
+                    <span class="text-gray-400 text-xl">➜</span>
                 </button>
             </div>
         </div>
@@ -107,19 +130,19 @@
             <div class="grid grid-cols-2 gap-3">
                 <a href="https://www.homegoycl.com.tw/tw/news-detail/109" target="_blank"
                    class="service-card col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 group hover:border-[#C6A87C] transition">
-                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C]">📜</div>
+                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C] shrink-0">📜</div>
                     <div class="text-left">
-                        <h4 class="font-bold text-white text-sm">買賣流程教學</h4>
-                        <p class="text-[10px] text-gray-400 mt-1">代書解析：簽約、用印、完稅、交屋</p>
+                        <h4 class="font-bold text-white text-base">買賣流程教學</h4>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">代書解析：簽約、用印、完稅、交屋</p>
                     </div>
                 </a>
 
                 <a href="https://yangceo-taiwan.github.io/loan-forecast/" target="_blank"
                    class="service-card col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 group hover:border-[#C6A87C] transition">
-                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C]">💎</div>
+                    <div class="bg-[#0B1E33] min-w-[3rem] h-12 rounded-full flex items-center justify-center text-2xl border border-gray-700 text-[#C6A87C] shrink-0">💎</div>
                     <div class="text-left">
-                        <h4 class="font-bold text-white text-sm">貸款 KYC 試算</h4>
-                        <p class="text-[10px] text-gray-400 mt-1">精準評估您的購屋能力</p>
+                        <h4 class="font-bold text-white text-base">貸款 KYC 試算</h4>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">精準評估您的購屋能力</p>
                     </div>
                 </a>
             </div>
@@ -130,136 +153,170 @@
         <p>&copy; 2024 富利暘建設有限公司</p>
     </footer>
 
-    <div id="repairModal" class="fixed inset-0 z-[60] hidden">
+    <div id="repairModal" class="fixed inset-0 z-[60] hidden flex flex-col justify-end">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('repairModal')"></div>
-        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
-            <div class="flex justify-between items-center mb-6">
+        <div class="relative w-full bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50] max-h-[85vh] overflow-y-auto safe-bottom">
+            <div class="sticky top-0 bg-white z-10 flex justify-between items-center mb-4 pb-2 border-b border-gray-100">
                 <h3 class="text-xl serif font-bold text-[#2C3E50]">🛠️ 填寫報修工單</h3>
-                <button onclick="closeModal('repairModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <button onclick="closeModal('repairModal')" class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 text-gray-500 font-bold w-8 h-8 flex items-center justify-center">&times;</button>
             </div>
-            <form onsubmit="event.preventDefault(); submitRepair();">
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">📍 報修地址 / 建案戶號 <span class="text-red-500">*</span></label>
-                    <input type="text" id="repairAddress" required placeholder="請填寫完整門牌號碼" class="w-full input-style">
+            
+            <form onsubmit="event.preventDefault(); submitRepair();" class="pb-4">
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">📍 報修地址 / 建案戶號 <span class="text-red-500">*</span></label>
+                    <input type="text" id="repairAddress" required placeholder="請填寫完整門牌號碼" class="input-style">
                 </div>
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">🏢 樓層 <span class="text-red-500">*</span></label>
-                    <select id="repairFloor" required class="w-full input-style bg-white"></select>
+                
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">🏢 樓層 <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <select id="repairFloor" required class="input-style bg-white text-gray-700">
+                            <option value="" disabled selected>請選擇樓層...</option>
+                        </select>
+                        <div class="absolute right-4 top-4 pointer-events-none text-gray-400">▼</div>
+                    </div>
                 </div>
+
                 <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-500 mb-2">⚠️ 報修項目</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <label class="cursor-pointer">
+                    <label class="block text-sm font-bold text-gray-600 mb-3">⚠️ 報修項目 (點擊選擇)</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer relative">
                             <input type="radio" name="repairCat" value="房屋滲水" class="peer hidden" checked>
-                            <div class="radio-box">💧 房屋滲水</div>
+                            <div class="radio-box">
+                                <span class="text-xl block mb-1">💧</span>房屋滲水
+                            </div>
                         </label>
-                        <label class="cursor-pointer">
+                        <label class="cursor-pointer relative">
                             <input type="radio" name="repairCat" value="水電報修" class="peer hidden">
-                            <div class="radio-box">⚡ 水電設備</div>
+                            <div class="radio-box">
+                                <span class="text-xl block mb-1">⚡</span>水電設備
+                            </div>
                         </label>
-                        <label class="cursor-pointer">
+                        <label class="cursor-pointer relative">
                             <input type="radio" name="repairCat" value="磁磚問題" class="peer hidden">
-                            <div class="radio-box">🧱 磁磚問題</div>
+                            <div class="radio-box">
+                                <span class="text-xl block mb-1">🧱</span>磁磚問題
+                            </div>
                         </label>
-                        <label class="cursor-pointer">
+                        <label class="cursor-pointer relative">
                             <input type="radio" name="repairCat" value="瓦斯問題" class="peer hidden">
-                            <div class="radio-box">🔥 瓦斯管線</div>
+                            <div class="radio-box">
+                                <span class="text-xl block mb-1">🔥</span>瓦斯管線
+                            </div>
                         </label>
                     </div>
                 </div>
-                <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center">
-                    <p class="text-xs text-gray-500 mb-2">📸 現場照片上傳</p>
-                    <button type="button" onclick="fakeUpload(this)" class="text-sm text-[#C6A87C] font-medium border border-[#C6A87C] px-4 py-1 rounded-full hover:bg-[#C6A87C] hover:text-white transition">+ 點擊準備照片</button>
-                    <p class="text-[10px] text-gray-400 mt-2">請準備好照片，稍後於 LINE 傳送</p>
+
+                <div class="mb-8 bg-gray-50 p-5 rounded-xl border-2 border-dashed border-gray-300 text-center active:bg-gray-100 transition">
+                    <p class="text-sm font-medium text-gray-600 mb-3">📸 現場照片上傳</p>
+                    <button type="button" onclick="fakeUpload(this)" class="w-full text-base text-[#C6A87C] font-bold border-2 border-[#C6A87C] px-4 py-3 rounded-lg hover:bg-[#C6A87C] hover:text-white transition shadow-sm">
+                        + 點擊準備照片
+                    </button>
+                    <p class="text-xs text-gray-400 mt-2">點擊後，稍後將引導至 LINE 傳送</p>
                 </div>
-                <button type="submit" class="w-full btn-submit">生成報修單並傳送</button>
+
+                <button type="submit" class="btn-submit">
+                    確認送出工單 ➜
+                </button>
             </form>
         </div>
     </div>
 
-    <div id="queryModal" class="fixed inset-0 z-[60] hidden">
+    <div id="queryModal" class="fixed inset-0 z-[60] hidden flex flex-col justify-end">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('queryModal')"></div>
-        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
-            <div class="flex justify-between items-center mb-6">
+        <div class="relative w-full bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50] max-h-[85vh] overflow-y-auto safe-bottom">
+            <div class="sticky top-0 bg-white z-10 flex justify-between items-center mb-4 pb-2 border-b border-gray-100">
                 <h3 class="text-xl serif font-bold text-[#2C3E50]">📂 買賣案件查詢</h3>
-                <button onclick="closeModal('queryModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <button onclick="closeModal('queryModal')" class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 text-gray-500 font-bold w-8 h-8 flex items-center justify-center">&times;</button>
             </div>
-            <form onsubmit="event.preventDefault(); submitQuery();">
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">🏗️ 購買建案名稱 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryProject" required placeholder="例如：富利暘一期" class="w-full input-style">
+            <form onsubmit="event.preventDefault(); submitQuery();" class="pb-4">
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">🏗️ 購買建案名稱 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryProject" required placeholder="例如：富利暘一期" class="input-style">
                 </div>
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">👤 客戶姓名 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryName" required placeholder="請輸入簽約人姓名" class="w-full input-style">
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">👤 客戶姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryName" required placeholder="請輸入簽約人姓名" class="input-style">
                 </div>
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">📍 購買戶別 / 地址 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryUnit" required placeholder="例如：A棟8樓 或 門牌號碼" class="w-full input-style">
+                <div class="mb-8">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">📍 購買戶別 / 地址 <span class="text-red-500">*</span></label>
+                    <input type="text" id="queryUnit" required placeholder="例如：A棟8樓 或 門牌號碼" class="input-style">
                 </div>
-                <button type="submit" class="w-full btn-submit bg-[#2C3E50] hover:bg-[#1a252f]">查詢案件進度</button>
+                <button type="submit" class="btn-submit bg-[#2C3E50]">
+                    查詢案件進度 ➜
+                </button>
             </form>
         </div>
     </div>
 
-    <div id="consultModal" class="fixed inset-0 z-[60] hidden">
+    <div id="consultModal" class="fixed inset-0 z-[60] hidden flex flex-col justify-end">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('consultModal')"></div>
-        <div class="absolute bottom-0 w-full md:relative md:top-20 md:w-[90%] md:max-w-md md:mx-auto md:rounded-2xl bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50]">
-            <div class="flex justify-between items-center mb-6">
+        <div class="relative w-full bg-white rounded-t-2xl p-6 modal-enter text-[#2C3E50] max-h-[85vh] overflow-y-auto safe-bottom">
+            <div class="sticky top-0 bg-white z-10 flex justify-between items-center mb-4 pb-2 border-b border-gray-100">
                 <h3 class="text-xl serif font-bold text-[#2C3E50]">💬 線上客服諮詢</h3>
-                <button onclick="closeModal('consultModal')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <button onclick="closeModal('consultModal')" class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 text-gray-500 font-bold w-8 h-8 flex items-center justify-center">&times;</button>
             </div>
-            <form onsubmit="event.preventDefault(); submitConsult();">
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-gray-500 mb-1">👤 您的姓名 <span class="text-red-500">*</span></label>
-                    <input type="text" id="consultName" required placeholder="請輸入姓名" class="w-full input-style">
+            <form onsubmit="event.preventDefault(); submitConsult();" class="pb-4">
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-600 mb-2">👤 您的姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" id="consultName" required placeholder="請輸入姓名" class="input-style">
                 </div>
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-500 mb-2">❓ 您想諮詢的問題</label>
-                    <div class="grid grid-cols-1 gap-2">
+                <div class="mb-8">
+                    <label class="block text-sm font-bold text-gray-600 mb-3">❓ 您想諮詢的問題</label>
+                    <div class="grid grid-cols-1 gap-3">
                         <label class="cursor-pointer">
                             <input type="radio" name="consultCat" value="合約與條款確認" class="peer hidden" checked>
-                            <div class="radio-box">📑 合約與條款確認</div>
+                            <div class="radio-box text-left px-5 flex items-center gap-3">
+                                <span class="text-xl">📑</span> 合約與條款確認
+                            </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="consultCat" value="工程款繳納進度" class="peer hidden">
-                            <div class="radio-box">💰 工程款繳納進度</div>
+                            <div class="radio-box text-left px-5 flex items-center gap-3">
+                                <span class="text-xl">💰</span> 工程款繳納進度
+                            </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="consultCat" value="交屋時間與驗屋" class="peer hidden">
-                            <div class="radio-box">🏗️ 交屋時間與驗屋</div>
+                            <div class="radio-box text-left px-5 flex items-center gap-3">
+                                <span class="text-xl">🏗️</span> 交屋時間與驗屋
+                            </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="consultCat" value="貸款與稅務諮詢" class="peer hidden">
-                            <div class="radio-box">🏦 貸款與稅務諮詢</div>
+                            <div class="radio-box text-left px-5 flex items-center gap-3">
+                                <span class="text-xl">🏦</span> 貸款與稅務諮詢
+                            </div>
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="w-full btn-submit bg-[#C6A87C] hover:bg-[#b09265]">開始諮詢</button>
+                <button type="submit" class="btn-submit bg-[#C6A87C]">
+                    開始諮詢 ➜
+                </button>
             </form>
         </div>
     </div>
-
-    <style>
-        .input-style { @apply bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#C6A87C] outline-none transition; }
-        .radio-box { @apply border border-gray-200 rounded-lg p-3 text-center text-sm peer-checked:bg-[#2C3E50] peer-checked:text-white peer-checked:border-[#2C3E50] transition; }
-        .btn-submit { @apply bg-[#A95C48] text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-90 transition tracking-widest; }
-    </style>
 
     <script>
         // 共用：初始化樓層
         const floorSelect = document.getElementById('repairFloor');
         for (let i = 1; i <= 15; i++) floorSelect.add(new Option(i + '樓', i + '樓'));
 
-        // 共用：開啟/關閉 Modal
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+        // 共用：開啟/關閉 Modal (鎖定背景滾動，防止滑動衝突)
+        function openModal(id) { 
+            document.getElementById(id).classList.remove('hidden'); 
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) { 
+            document.getElementById(id).classList.add('hidden'); 
+            document.body.style.overflow = '';
+        }
 
         // 報修：擬態上傳
         function fakeUpload(btn) {
             btn.classList.add('bg-[#C6A87C]', 'text-white');
-            btn.innerHTML = "✅ 已準備就緒";
-            Swal.fire({ toast: true, position: 'top', icon: 'success', title: '照片已標記，請於 LINE 傳送', showConfirmButton: false, timer: 2000 });
+            btn.innerHTML = "✅ 已準備就緒 (請於 LINE 傳送)";
+            Swal.fire({ toast: true, position: 'top', icon: 'success', title: '照片已標記', showConfirmButton: false, timer: 1500 });
         }
 
         // --- 核心邏輯：傳送至 LINE ---
@@ -275,6 +332,11 @@
             const floor = document.getElementById('repairFloor').value;
             const cat = document.querySelector('input[name="repairCat"]:checked').value;
             
+            if (!addr || !floor) {
+                Swal.fire({icon: 'warning', text: '請填寫完整地址與樓層', confirmButtonColor: '#2C3E50'});
+                return;
+            }
+
             const msg = `【🏠 房屋報修申請】\n` +
                         `📍 地址/案名：${addr}\n` +
                         `🏢 樓層：${floor}\n` +
@@ -291,6 +353,11 @@
             const name = document.getElementById('queryName').value;
             const unit = document.getElementById('queryUnit').value;
 
+            if (!project || !name || !unit) {
+                Swal.fire({icon: 'warning', text: '請填寫完整查詢資訊', confirmButtonColor: '#2C3E50'});
+                return;
+            }
+
             const msg = `【📂 買賣案件查詢】\n` +
                         `🏗️ 建案：${project}\n` +
                         `👤 姓名：${name}\n` +
@@ -305,6 +372,11 @@
         function submitConsult() {
             const name = document.getElementById('consultName').value;
             const cat = document.querySelector('input[name="consultCat"]:checked').value;
+
+            if (!name) {
+                Swal.fire({icon: 'warning', text: '請填寫您的姓名', confirmButtonColor: '#2C3E50'});
+                return;
+            }
 
             const msg = `【💬 線上客服諮詢】\n` +
                         `👤 姓名：${name}\n` +
