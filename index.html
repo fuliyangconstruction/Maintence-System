@@ -31,18 +31,20 @@
 </head>
 <body class="text-white min-h-screen flex flex-col">
 
-    <header class="bg-[#0B1E33] py-4 px-5 sticky top-0 z-50 border-b border-gray-800/50 shadow-md">
-        <div class="max-w-lg mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden p-1">
-                    <img src="富利暘Logo Stamp.png" alt="Logo" class="object-contain w-full h-full opacity-90">
+    <header class="bg-[#0B1E33] py-6 px-4 sticky top-0 z-50 border-b border-gray-800/50 shadow-lg">
+        <div class="max-w-lg mx-auto relative flex items-center justify-center">
+            
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden p-2 shadow-inner border border-white/5">
+                    <img src="富利暘Logo Stamp.png" alt="Logo" class="object-contain w-full h-full opacity-95">
                 </div>
-                <div class="text-left">
-                    <h1 class="text-lg serif font-bold tracking-[0.1em] text-white">富利暘建設</h1>
-                    <p class="text-[9px] text-[#C6A87C] tracking-widest uppercase">VIP CLIENT SERVICE</p>
+                <div class="text-center mt-1">
+                    <h1 class="text-2xl serif font-bold tracking-[0.2em] text-white drop-shadow-md">富利暘建設</h1>
+                    <p class="text-[10px] text-[#C6A87C] tracking-[0.3em] uppercase mt-0.5">VIP CLIENT SERVICE</p>
                 </div>
             </div>
-            <button id="backBtn" onclick="goHome()" class="hidden text-sm border border-gray-500 rounded-full px-4 py-1.5 text-gray-300 hover:text-white hover:border-white transition active:bg-gray-800">
+
+            <button id="backBtn" onclick="goHome()" class="hidden absolute right-0 top-1/2 -translate-y-1/2 text-xs border border-gray-600 rounded-full px-3 py-1.5 text-gray-400 hover:text-white hover:border-white transition active:bg-gray-800 backdrop-blur-sm">
                 ⬅️ 返回
             </button>
         </div>
@@ -50,28 +52,28 @@
 
     <main class="flex-grow w-full max-w-lg mx-auto p-4 relative pb-24">
 
-        <div id="view-home" class="page-section active flex-col gap-5">
+        <div id="view-home" class="page-section active flex-col gap-6">
             
             <a href="https://fuliyang-construction.com/" target="_blank"
-               class="w-full block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-6 shadow-lg flex items-center justify-between relative overflow-hidden ring-1 ring-white/20 active:scale-95 transition-transform">
+               class="w-full block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-6 shadow-lg flex items-center justify-between relative overflow-hidden ring-1 ring-white/20 active:scale-95 transition-transform mt-2">
                 <div class="flex items-center gap-4 relative z-10">
                     <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white shadow-inner">🏢</div>
                     <div>
-                        <h4 class="font-bold text-white text-lg tracking-wide">前往公司官網</h4>
+                        <h4 class="font-bold text-white text-xl tracking-wide">前往公司官網</h4>
                         <p class="text-xs text-white/90">品牌資訊、熱銷建案賞析</p>
                     </div>
                 </div>
-                <span class="text-white relative z-10 font-bold bg-white/20 px-3 py-1 rounded-full text-xs">GO ➜</span>
+                <span class="text-white relative z-10 font-bold bg-white/20 px-4 py-1.5 rounded-full text-xs">GO ➜</span>
             </a>
 
             <div>
-                <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase flex items-center gap-2">
+                <h3 class="text-xs text-gray-400 mb-4 ml-1 tracking-wider uppercase flex items-center gap-2">
                     <span class="w-1 h-4 bg-[#C6A87C] rounded-full"></span> 選擇服務項目
                 </h3>
                 <div class="flex flex-col gap-4">
                     
-                    <button onclick="goToPage('view-query')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#2C3E50]">
-                        <div class="flex items-center gap-4">
+                    <button onclick="goToPage('view-query')" class="w-full bg-white rounded-xl p-6 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#2C3E50]">
+                        <div class="flex items-center gap-5">
                             <div class="bg-[#F0F4F8] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">📂</div>
                             <div class="text-left">
                                 <h4 class="font-bold text-xl text-[#2C3E50]">買賣案件查詢</h4>
@@ -81,8 +83,8 @@
                         <span class="text-gray-300 text-2xl font-bold">➜</span>
                     </button>
 
-                    <button onclick="goToPage('view-repair')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#A95C48]">
-                        <div class="flex items-center gap-4">
+                    <button onclick="goToPage('view-repair')" class="w-full bg-white rounded-xl p-6 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#A95C48]">
+                        <div class="flex items-center gap-5">
                             <div class="bg-[#FFF5F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">🛠️</div>
                             <div class="text-left">
                                 <h4 class="font-bold text-xl text-[#2C3E50]">房屋報修申請</h4>
@@ -92,8 +94,8 @@
                         <span class="text-gray-300 text-2xl font-bold">➜</span>
                     </button>
 
-                    <button onclick="goToPage('view-consult')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#C6A87C]">
-                        <div class="flex items-center gap-4">
+                    <button onclick="goToPage('view-consult')" class="w-full bg-white rounded-xl p-6 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#C6A87C]">
+                        <div class="flex items-center gap-5">
                             <div class="bg-[#FCF9F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">💬</div>
                             <div class="text-left">
                                 <h4 class="font-bold text-xl text-[#2C3E50]">線上客服諮詢</h4>
@@ -107,19 +109,19 @@
 
             <div class="grid grid-cols-2 gap-3 mt-2">
                 <a href="https://www.homegoycl.com.tw/tw/news-detail/109" target="_blank"
-                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition shadow-sm">
+                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-5 flex items-center gap-5 active:bg-[#2C3E50] transition shadow-sm">
                     <div class="text-3xl bg-[#0B1E33] w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 text-[#C6A87C]">📜</div>
                     <div>
-                        <h4 class="font-bold text-white text-base">買賣流程教學</h4>
-                        <p class="text-[11px] text-gray-400 mt-1">代書解析：簽約、用印、交屋</p>
+                        <h4 class="font-bold text-white text-lg">買賣流程教學</h4>
+                        <p class="text-xs text-gray-400 mt-1">代書解析：簽約、用印、交屋</p>
                     </div>
                 </a>
                 <a href="https://yangceo-taiwan.github.io/loan-forecast/" target="_blank"
-                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition shadow-sm">
+                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-5 flex items-center gap-5 active:bg-[#2C3E50] transition shadow-sm">
                     <div class="text-3xl bg-[#0B1E33] w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 text-[#C6A87C]">💎</div>
                     <div>
-                        <h4 class="font-bold text-white text-base">貸款 KYC 試算</h4>
-                        <p class="text-[11px] text-gray-400 mt-1">精準評估您的購屋能力</p>
+                        <h4 class="font-bold text-white text-lg">貸款 KYC 試算</h4>
+                        <p class="text-xs text-gray-400 mt-1">精準評估您的購屋能力</p>
                     </div>
                 </a>
             </div>
