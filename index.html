@@ -20,7 +20,7 @@
         .page-section { display: none; opacity: 0; transition: opacity 0.2s ease-in-out; }
         .page-section.active { display: flex; opacity: 1; }
 
-        /* 自定義選單選中效果：變成深藍色背景+白字 */
+        /* 自定義選單選中效果 */
         input:checked + div {
             background-color: #2C3E50 !important;
             color: white !important;
@@ -69,23 +69,24 @@
                     <span class="w-1 h-4 bg-[#C6A87C] rounded-full"></span> 選擇服務項目
                 </h3>
                 <div class="flex flex-col gap-4">
-                    <button onclick="goToPage('view-repair')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#A95C48]">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-[#FFF5F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">🛠️</div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-xl text-[#2C3E50]">房屋報修申請</h4>
-                                <p class="text-sm text-gray-500 mt-1">填寫工單、上傳照片</p>
-                            </div>
-                        </div>
-                        <span class="text-gray-300 text-2xl font-bold">➜</span>
-                    </button>
-
+                    
                     <button onclick="goToPage('view-query')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#2C3E50]">
                         <div class="flex items-center gap-4">
                             <div class="bg-[#F0F4F8] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">📂</div>
                             <div class="text-left">
                                 <h4 class="font-bold text-xl text-[#2C3E50]">買賣案件查詢</h4>
                                 <p class="text-sm text-gray-500 mt-1">查詢簽約與案件進度</p>
+                            </div>
+                        </div>
+                        <span class="text-gray-300 text-2xl font-bold">➜</span>
+                    </button>
+
+                    <button onclick="goToPage('view-repair')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#A95C48]">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-[#FFF5F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">🛠️</div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xl text-[#2C3E50]">房屋報修申請</h4>
+                                <p class="text-sm text-gray-500 mt-1">填寫工單、上傳照片</p>
                             </div>
                         </div>
                         <span class="text-gray-300 text-2xl font-bold">➜</span>
@@ -145,30 +146,12 @@
                 <div>
                     <label class="block text-base font-bold text-gray-700 mb-3">⚠️ 報修項目 (點選)</label>
                     <div class="grid grid-cols-2 gap-4">
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="水電報修" class="hidden" checked>
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">⚡ 水電設備</div>
-                        </label>
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="磁磚問題" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🧱 磁磚問題</div>
-                        </label>
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="瓦斯問題" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🔥 瓦斯管線</div>
-                        </label>
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="電梯設備" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🛗 電梯設備</div>
-                        </label>
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="防水與排水" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">💧 防水與排水</div>
-                        </label>
-                        <label class="cursor-pointer w-full">
-                            <input type="radio" name="repairCat" value="其他" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🔧 其他</div>
-                        </label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="水電報修" class="hidden" checked><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">⚡ 水電設備</div></label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="磁磚問題" class="hidden"><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🧱 磁磚問題</div></label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="瓦斯問題" class="hidden"><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🔥 瓦斯管線</div></label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="電梯設備" class="hidden"><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🛗 電梯設備</div></label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="防水與排水" class="hidden"><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">💧 防水與排水</div></label>
+                        <label class="cursor-pointer w-full"><input type="radio" name="repairCat" value="其他" class="hidden"><div class="border-2 border-gray-100 rounded-xl py-4 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">🔧 其他</div></label>
                     </div>
                 </div>
                 
