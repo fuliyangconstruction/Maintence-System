@@ -12,41 +12,25 @@
         body { 
             font-family: 'Noto Sans TC', sans-serif; 
             -webkit-tap-highlight-color: transparent;
-            background-color: #0B1E33; /* 預設深藍背景 */
+            background-color: #0B1E33;
         }
         .serif { font-family: 'Noto Serif TC', serif; }
 
         /* 頁面切換特效 */
-        .page-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .page-section { display: none; opacity: 0; transition: opacity 0.2s ease-in-out; }
         .page-section.active { display: flex; opacity: 1; }
 
-        /* 輸入框優化：字體加大防止 iOS 自動縮放 */
-        .input-style { 
-            @apply w-full bg-white border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#C6A87C] focus:ring-0 outline-none transition appearance-none text-gray-800 font-medium;
-        }
-        
-        /* 選項按鈕：極大化點擊區，點擊會有明顯回饋 */
-        .radio-box-wrapper input:checked + div {
-            background-color: #2C3E50;
-            color: white;
-            border-color: #2C3E50;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-btn {
-            @apply w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 mb-3 border-l-4;
-        }
-
-        /* 底部按鈕 */
-        .btn-submit { 
-            @apply w-full bg-[#A95C48] text-white font-bold py-5 rounded-xl shadow-lg 
-                   active:bg-[#8e4d3c] active:scale-[0.98] transition tracking-widest text-xl mt-6 mb-12; 
+        /* 自定義選單選中效果 */
+        input:checked + div {
+            background-color: #2C3E50 !important;
+            color: white !important;
+            border-color: #2C3E50 !important;
         }
     </style>
 </head>
 <body class="text-white min-h-screen flex flex-col">
 
-    <header class="bg-[#0B1E33] py-4 px-6 sticky top-0 z-50 border-b border-gray-800/50 shadow-md">
+    <header class="bg-[#0B1E33] py-4 px-5 sticky top-0 z-50 border-b border-gray-800/50 shadow-md">
         <div class="max-w-lg mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden p-1">
@@ -57,81 +41,81 @@
                     <p class="text-[9px] text-[#C6A87C] tracking-widest uppercase">VIP CLIENT SERVICE</p>
                 </div>
             </div>
-            <button id="backBtn" onclick="goHome()" class="hidden text-sm border border-gray-500 rounded-full px-3 py-1 text-gray-300 hover:text-white hover:border-white transition">
+            <button id="backBtn" onclick="goHome()" class="hidden text-sm border border-gray-500 rounded-full px-4 py-1.5 text-gray-300 hover:text-white hover:border-white transition active:bg-gray-800">
                 ⬅️ 返回
             </button>
         </div>
     </header>
 
-    <main class="flex-grow w-full max-w-lg mx-auto p-4 relative">
+    <main class="flex-grow w-full max-w-lg mx-auto p-4 relative pb-24">
 
-        <div id="view-home" class="page-section active flex-col pb-20">
+        <div id="view-home" class="page-section active flex-col gap-5">
             
-            <div class="w-full mb-6">
-                <a href="https://fuliyang-construction.com/" target="_blank"
-                   class="block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-6 shadow-lg flex items-center justify-between relative overflow-hidden ring-1 ring-white/20 active:scale-95 transition-transform">
-                    <div class="flex items-center gap-4 relative z-10">
-                        <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white shadow-inner">🏢</div>
-                        <div>
-                            <h4 class="font-bold text-white text-lg tracking-wide">前往公司官網</h4>
-                            <p class="text-xs text-white/90">品牌資訊、熱銷建案賞析</p>
-                        </div>
+            <a href="https://fuliyang-construction.com/" target="_blank"
+               class="w-full block bg-gradient-to-r from-[#C6A87C] to-[#B09265] rounded-xl p-6 shadow-lg flex items-center justify-between relative overflow-hidden ring-1 ring-white/20 active:scale-95 transition-transform">
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm text-white shadow-inner">🏢</div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg tracking-wide">前往公司官網</h4>
+                        <p class="text-xs text-white/90">品牌資訊、熱銷建案賞析</p>
                     </div>
-                    <span class="text-white relative z-10 font-bold bg-white/20 px-3 py-1 rounded-full text-xs">GO ➜</span>
-                </a>
-            </div>
+                </div>
+                <span class="text-white relative z-10 font-bold bg-white/20 px-3 py-1 rounded-full text-xs">GO ➜</span>
+            </a>
 
-            <div class="w-full mb-8">
+            <div>
                 <h3 class="text-xs text-gray-400 mb-3 ml-1 tracking-wider uppercase flex items-center gap-2">
                     <span class="w-1 h-4 bg-[#C6A87C] rounded-full"></span> 選擇服務項目
                 </h3>
                 
-                <button onclick="goToPage('view-repair')" class="service-btn border-[#A95C48] text-[#2C3E50]">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-[#FFF5F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">🛠️</div>
-                        <div class="text-left">
-                            <h4 class="font-bold text-lg">房屋報修申請</h4>
-                            <p class="text-xs text-gray-500">填寫工單、上傳照片</p>
+                <div class="flex flex-col gap-4">
+                    <button onclick="goToPage('view-repair')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#A95C48]">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-[#FFF5F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">🛠️</div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xl text-[#2C3E50]">房屋報修申請</h4>
+                                <p class="text-sm text-gray-500 mt-1">填寫工單、上傳照片</p>
+                            </div>
                         </div>
-                    </div>
-                    <span class="text-gray-400 text-xl font-bold">➜</span>
-                </button>
+                        <span class="text-gray-300 text-2xl font-bold">➜</span>
+                    </button>
 
-                <button onclick="goToPage('view-query')" class="service-btn border-[#2C3E50] text-[#2C3E50]">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-[#F0F4F8] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">📂</div>
-                        <div class="text-left">
-                            <h4 class="font-bold text-lg">買賣案件查詢</h4>
-                            <p class="text-xs text-gray-500">查詢簽約與案件進度</p>
+                    <button onclick="goToPage('view-query')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#2C3E50]">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-[#F0F4F8] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">📂</div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xl text-[#2C3E50]">買賣案件查詢</h4>
+                                <p class="text-sm text-gray-500 mt-1">查詢簽約與案件進度</p>
+                            </div>
                         </div>
-                    </div>
-                    <span class="text-gray-400 text-xl font-bold">➜</span>
-                </button>
+                        <span class="text-gray-300 text-2xl font-bold">➜</span>
+                    </button>
 
-                <button onclick="goToPage('view-consult')" class="service-btn border-[#C6A87C] text-[#2C3E50]">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-[#FCF9F2] w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0">💬</div>
-                        <div class="text-left">
-                            <h4 class="font-bold text-lg">線上客服諮詢</h4>
-                            <p class="text-xs text-gray-500">合約、款項與稅務問題</p>
+                    <button onclick="goToPage('view-consult')" class="w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md active:scale-95 transition-transform duration-200 border-l-4 border-[#C6A87C]">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-[#FCF9F2] w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0">💬</div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xl text-[#2C3E50]">線上客服諮詢</h4>
+                                <p class="text-sm text-gray-500 mt-1">合約、款項與稅務問題</p>
+                            </div>
                         </div>
-                    </div>
-                    <span class="text-gray-400 text-xl font-bold">➜</span>
-                </button>
+                        <span class="text-gray-300 text-2xl font-bold">➜</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-3 mt-2">
                 <a href="https://www.homegoycl.com.tw/tw/news-detail/109" target="_blank"
-                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition">
-                    <div class="text-3xl">📜</div>
+                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition shadow-sm">
+                    <div class="text-3xl bg-[#0B1E33] w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 text-[#C6A87C]">📜</div>
                     <div>
                         <h4 class="font-bold text-white text-base">買賣流程教學</h4>
                         <p class="text-[11px] text-gray-400 mt-1">代書解析：簽約、用印、交屋</p>
                     </div>
                 </a>
                 <a href="https://yangceo-taiwan.github.io/loan-forecast/" target="_blank"
-                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition">
-                    <div class="text-3xl">💎</div>
+                   class="col-span-2 bg-[#1E293B] border border-gray-700/50 rounded-xl p-4 flex items-center gap-4 active:bg-[#2C3E50] transition shadow-sm">
+                    <div class="text-3xl bg-[#0B1E33] w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 text-[#C6A87C]">💎</div>
                     <div>
                         <h4 class="font-bold text-white text-base">貸款 KYC 試算</h4>
                         <p class="text-[11px] text-gray-400 mt-1">精準評估您的購屋能力</p>
@@ -140,104 +124,229 @@
             </div>
         </div>
 
-        <div id="view-repair" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-10 p-6 min-h-screen">
-            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-2">🛠️ 填寫報修工單</h3>
+        <div id="view-repair" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-20 p-6 min-h-screen rounded-t-2xl md:rounded-none">
+            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-4 flex items-center gap-2">
+                🛠️ 填寫報修工單
+            </h3>
             
-            <form onsubmit="event.preventDefault(); submitRepair();">
-                <div class="mb-6">
+            <form onsubmit="event.preventDefault(); submitRepair();" class="flex flex-col gap-6">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">📍 地址 / 案名 <span class="text-red-500">*</span></label>
-                    <input type="text" id="repairAddress" required placeholder="例如：A棟8樓" class="input-style bg-gray-50">
+                    <input type="text" id="repairAddress" required placeholder="例如：A棟8樓" 
+                           class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#C6A87C] outline-none transition text-gray-800 font-medium">
                 </div>
                 
-                <div class="mb-6">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">🏢 樓層 <span class="text-red-500">*</span></label>
                     <div class="relative">
-                        <select id="repairFloor" required class="input-style bg-gray-50">
+                        <select id="repairFloor" required 
+                                class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#C6A87C] outline-none transition text-gray-800 font-medium appearance-none">
                             <option value="" disabled selected>請選擇樓層...</option>
-                            </select>
-                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+                        </select>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 font-bold">▼</div>
                     </div>
                 </div>
 
-                <div class="mb-8">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-3">⚠️ 報修項目 (點選)</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="radio-box-wrapper cursor-pointer w-full">
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer w-full">
                             <input type="radio" name="repairCat" value="房屋滲水" class="hidden" checked>
-                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg">
+                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">
                                 💧 房屋滲水
                             </div>
                         </label>
-                        <label class="radio-box-wrapper cursor-pointer w-full">
+                        <label class="cursor-pointer w-full">
                             <input type="radio" name="repairCat" value="水電報修" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg">
+                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">
                                 ⚡ 水電設備
                             </div>
                         </label>
-                        <label class="radio-box-wrapper cursor-pointer w-full">
+                        <label class="cursor-pointer w-full">
                             <input type="radio" name="repairCat" value="磁磚問題" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg">
+                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">
                                 🧱 磁磚問題
                             </div>
                         </label>
-                        <label class="radio-box-wrapper cursor-pointer w-full">
+                        <label class="cursor-pointer w-full">
                             <input type="radio" name="repairCat" value="瓦斯問題" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg">
+                            <div class="border-2 border-gray-100 rounded-xl py-6 text-center font-bold text-gray-500 transition-all bg-gray-50 text-lg shadow-sm">
                                 🔥 瓦斯管線
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <div class="mb-8 p-4 bg-gray-50 rounded-xl border-2 border-dashed border-[#C6A87C] text-center">
-                    <p class="text-sm font-bold text-gray-600 mb-2">📸 準備現場照片</p>
-                    <button type="button" onclick="fakeUpload(this)" class="w-full bg-[#C6A87C] text-white py-3 rounded-lg font-bold shadow-sm active:scale-95 transition">
+                <div class="p-6 bg-gray-50 rounded-xl border-2 border-dashed border-[#C6A87C] text-center">
+                    <p class="text-base font-bold text-gray-600 mb-3">📸 準備現場照片</p>
+                    <button type="button" onclick="fakeUpload(this)" 
+                            class="w-full bg-[#C6A87C] text-white py-4 rounded-xl font-bold text-lg shadow-md active:scale-95 transition hover:bg-[#b09265]">
                         + 點擊確認照片已準備
                     </button>
                     <p class="text-xs text-gray-400 mt-2">系統將引導至 LINE 傳送</p>
                 </div>
 
-                <button type="submit" class="btn-submit">確認並送出 ➜</button>
+                <button type="submit" 
+                        class="w-full bg-[#A95C48] text-white font-bold py-5 rounded-xl shadow-lg active:bg-[#8e4d3c] active:scale-[0.98] transition tracking-widest text-xl mt-4 mb-12">
+                    確認並送出 ➜
+                </button>
             </form>
         </div>
 
-        <div id="view-query" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-10 p-6 min-h-screen">
-            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-2">📂 買賣案件查詢</h3>
-            <form onsubmit="event.preventDefault(); submitQuery();">
-                <div class="mb-5">
+        <div id="view-query" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-20 p-6 min-h-screen rounded-t-2xl md:rounded-none">
+            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-4">📂 買賣案件查詢</h3>
+            <form onsubmit="event.preventDefault(); submitQuery();" class="flex flex-col gap-6">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">🏗️ 建案名稱 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryProject" required placeholder="例如：富利暘一期" class="input-style bg-gray-50">
+                    <input type="text" id="queryProject" required placeholder="例如：富利暘一期" 
+                           class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#2C3E50] outline-none transition text-gray-800 font-medium">
                 </div>
-                <div class="mb-5">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">👤 客戶姓名 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryName" required placeholder="請輸入姓名" class="input-style bg-gray-50">
+                    <input type="text" id="queryName" required placeholder="請輸入姓名" 
+                           class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#2C3E50] outline-none transition text-gray-800 font-medium">
                 </div>
-                <div class="mb-8">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">📍 購買戶別 <span class="text-red-500">*</span></label>
-                    <input type="text" id="queryUnit" required placeholder="例如：A棟8樓" class="input-style bg-gray-50">
+                    <input type="text" id="queryUnit" required placeholder="例如：A棟8樓" 
+                           class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#2C3E50] outline-none transition text-gray-800 font-medium">
                 </div>
-                <button type="submit" class="btn-submit bg-[#2C3E50]">查詢進度 ➜</button>
+                <button type="submit" 
+                        class="w-full bg-[#2C3E50] text-white font-bold py-5 rounded-xl shadow-lg active:scale-[0.98] transition tracking-widest text-xl mt-4 mb-12">
+                    查詢進度 ➜
+                </button>
             </form>
         </div>
 
-        <div id="view-consult" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-10 p-6 min-h-screen">
-            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-2">💬 線上客服諮詢</h3>
-            <form onsubmit="event.preventDefault(); submitConsult();">
-                <div class="mb-6">
+        <div id="view-consult" class="page-section flex-col bg-white text-[#2C3E50] absolute inset-0 z-20 p-6 min-h-screen rounded-t-2xl md:rounded-none">
+            <h3 class="text-2xl font-bold mb-6 text-[#2C3E50] border-b pb-4">💬 線上客服諮詢</h3>
+            <form onsubmit="event.preventDefault(); submitConsult();" class="flex flex-col gap-6">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-2">👤 您的姓名 <span class="text-red-500">*</span></label>
-                    <input type="text" id="consultName" required placeholder="請輸入姓名" class="input-style bg-gray-50">
+                    <input type="text" id="consultName" required placeholder="請輸入姓名" 
+                           class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl p-4 text-lg focus:border-[#C6A87C] outline-none transition text-gray-800 font-medium">
                 </div>
                 
-                <div class="mb-8">
+                <div>
                     <label class="block text-base font-bold text-gray-700 mb-3">❓ 諮詢項目 (點選)</label>
-                    <div class="space-y-3">
-                        <label class="radio-box-wrapper cursor-pointer block w-full">
+                    <div class="flex flex-col gap-4">
+                        <label class="cursor-pointer block w-full">
                             <input type="radio" name="consultCat" value="合約確認" class="hidden" checked>
-                            <div class="border-2 border-gray-100 rounded-xl p-4 flex items-center gap-4 bg-gray-50">
-                                <span class="text-2xl">📑</span> <span class="font-bold text-lg">合約與條款確認</span>
+                            <div class="border-2 border-gray-100 rounded-xl p-5 flex items-center gap-4 bg-gray-50 transition-all shadow-sm">
+                                <span class="text-3xl">📑</span> <span class="font-bold text-lg">合約與條款確認</span>
                             </div>
                         </label>
-                        <label class="radio-box-wrapper cursor-pointer block w-full">
+                        <label class="cursor-pointer block w-full">
                             <input type="radio" name="consultCat" value="工程款" class="hidden">
-                            <div class="border-2 border-gray-100 rounded-xl p-4 flex items-center gap-4 bg-gray-50">
-                                <span class="text-2xl">💰</span>
+                            <div class="border-2 border-gray-100 rounded-xl p-5 flex items-center gap-4 bg-gray-50 transition-all shadow-sm">
+                                <span class="text-3xl">💰</span> <span class="font-bold text-lg">工程款繳納進度</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer block w-full">
+                            <input type="radio" name="consultCat" value="交屋驗屋" class="hidden">
+                            <div class="border-2 border-gray-100 rounded-xl p-5 flex items-center gap-4 bg-gray-50 transition-all shadow-sm">
+                                <span class="text-3xl">🏗️</span> <span class="font-bold text-lg">交屋時間與驗屋</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer block w-full">
+                            <input type="radio" name="consultCat" value="貸款稅務" class="hidden">
+                            <div class="border-2 border-gray-100 rounded-xl p-5 flex items-center gap-4 bg-gray-50 transition-all shadow-sm">
+                                <span class="text-3xl">🏦</span> <span class="font-bold text-lg">貸款與稅務諮詢</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" 
+                        class="w-full bg-[#C6A87C] text-white font-bold py-5 rounded-xl shadow-lg active:scale-[0.98] transition tracking-widest text-xl mt-4 mb-12">
+                    開始諮詢 ➜
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <script>
+        // 初始化樓層
+        const floorSelect = document.getElementById('repairFloor');
+        for (let i = 1; i <= 15; i++) floorSelect.add(new Option(i + '樓', i + '樓'));
+
+        // === 頁面切換核心邏輯 ===
+        function goToPage(pageId) {
+            // 隱藏所有頁面
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            // 顯示目標頁面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 滾動到頂部
+            window.scrollTo(0, 0);
+
+            // 控制返回按鈕顯示與背景色
+            const backBtn = document.getElementById('backBtn');
+            if (pageId === 'view-home') {
+                backBtn.classList.add('hidden');
+                document.body.style.backgroundColor = '#0B1E33'; // 深藍背景
+            } else {
+                backBtn.classList.remove('hidden');
+                document.body.style.backgroundColor = '#ffffff'; // 白色背景(避免表單被截斷)
+            }
+        }
+
+        function goHome() {
+            goToPage('view-home');
+        }
+
+        // 擬態上傳
+        function fakeUpload(btn) {
+            btn.classList.remove('bg-[#C6A87C]');
+            btn.classList.add('bg-green-600', 'text-white');
+            btn.innerText = "✅ 照片已標記 (請於 LINE 傳送)";
+            Swal.fire({
+                toast: true, position: 'top', icon: 'success', 
+                title: '照片已標記，請於 LINE 傳送', showConfirmButton: false, timer: 2000
+            });
+        }
+
+        // LINE 傳送邏輯
+        function sendToLine(message) {
+            const encodedMsg = encodeURIComponent(message);
+            window.location.href = `https://line.me/R/oaMessage/@491kpfrg/?${encodedMsg}`;
+        }
+
+        function submitRepair() {
+            const addr = document.getElementById('repairAddress').value;
+            const floor = document.getElementById('repairFloor').value;
+            const cat = document.querySelector('input[name="repairCat"]:checked').value;
+            
+            if (!addr || !floor) {
+                Swal.fire({icon: 'warning', text: '請填寫地址與樓層', confirmButtonColor: '#2C3E50'});
+                return;
+            }
+            const msg = `【🏠 房屋報修申請】\n📍 地址：${addr}\n🏢 樓層：${floor}\n⚠️ 項目：${cat}\n📸 (請在此傳送照片)`;
+            sendToLine(msg);
+        }
+
+        function submitQuery() {
+            const project = document.getElementById('queryProject').value;
+            const name = document.getElementById('queryName').value;
+            const unit = document.getElementById('queryUnit').value;
+            if (!project || !name || !unit) {
+                Swal.fire({icon: 'warning', text: '資料不完整', confirmButtonColor: '#2C3E50'});
+                return;
+            }
+            const msg = `【📂 買賣案件查詢】\n🏗️ 建案：${project}\n👤 姓名：${name}\n📍 戶別：${unit}\n❓ 請問案件進度？`;
+            sendToLine(msg);
+        }
+
+        function submitConsult() {
+            const name = document.getElementById('consultName').value;
+            const cat = document.querySelector('input[name="consultCat"]:checked').value;
+            if (!name) {
+                Swal.fire({icon: 'warning', text: '請填寫姓名', confirmButtonColor: '#2C3E50'});
+                return;
+            }
+            const msg = `【💬 線上客服諮詢】\n👤 姓名：${name}\n❓ 項目：${cat}\n💡 請協助回覆，謝謝！`;
+            sendToLine(msg);
+        }
+    </script>
+</body>
+</html>
